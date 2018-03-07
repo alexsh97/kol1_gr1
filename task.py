@@ -1,26 +1,40 @@
-#Write a library that contains a class that can represent any 2𝑥2 real matrice. 
-#Include two functions to calculate the sum and product of two matrices. 
-#Next, write a program that imports this library module and use it to perform calculations.
-#Examples:
-#
-# matrix_1 = Matrix(4,5,6,7)
-# matrix_2 = Matrix(2,2,2,1)
-#
-# matrix_3 = matrix_2.add(matrix_1)
-#
-#Try to expand your implementation as best as you can. 
-#Think of as many features as you can, and try implementing them.
-#(If you want you can expand implementation to NxN matrix.)
-#Make intelligent use of pythons syntactic sugar (overloading, iterators, generators, etc)
-#Most of all: CREATE GOOD, RELIABLE, READABLE CODE.
-#The goal of this task is for you to SHOW YOUR BEST python programming skills.
-#Impress everyone with your skills, show off with your code.
-#
-#Your program must be runnable with command "python task.py".
-#Show some usecases of your library in the code (print some things)
-#
-#When you are done upload this code to your github repository. 
-#The whole repository MUST be a fork from https://github.com/mwmajew/kol1_gr1.py
-#
-#Delete these comments before commit!
-#Good luck.
+
+class Matrix22:
+    
+    matrix = [0,0,0,0]
+    
+    def __init__(self,m1,m2,m3,m4):
+            self.matrix = [m1,m2,m3,m4]
+    
+    def sum(self):
+        suma = 0
+        for m in self.matrix:
+            suma = suma + m
+        return suma
+    
+    
+    def prod(self, mat2):
+        #print(str(self.matrix[0]))
+        m1 = (self.matrix[0]*mat2.matrix[0]) + (self.matrix[1]*mat2.matrix[2])
+        m3 = (self.matrix[2]*mat2.matrix[0]) + (self.matrix[3]*mat2.matrix[2])
+        m2 = (self.matrix[0]*mat2.matrix[1]) + (self.matrix[1]*mat2.matrix[3])
+        m4 = (self.matrix[2]*mat2.matrix[1]) + (self.matrix[3]*mat2.matrix[3])
+        mat12 = Matrix22(m1,m2,m3,m4)
+        return mat12
+    def show(self):
+        print("["+str(self.matrix[0]) + " " + str(self.matrix[1])+"]")
+        print("["+str(self.matrix[2]) + " " + str(self.matrix[3])+"]")
+        pass
+        
+   
+
+
+matrix_1  = Matrix22(1,2,3,4)    
+matrix_2 = Matrix22(2,2,2,1)
+
+matrix_3 = matrix_1.prod(matrix_2)
+mat1_sum = matrix_3.sum()
+print ("matrix_3: sum = " + str(mat1_sum))
+
+print ("Matrix3:")
+matrix_3.show()
