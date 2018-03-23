@@ -10,8 +10,8 @@ if __name__=="__main__":
 			)
 	print(matrix1)
 
-	print("matrix1 + 1 = new_matrix1")
-	new_matrix1 = matrix1 + 1
+	print("1 +  matrix1 = new_matrix1")
+	new_matrix1 = 1 + matrix1
 	print(new_matrix1)
 
 	print("matrix2")
@@ -22,8 +22,8 @@ if __name__=="__main__":
 			)
 	print(matrix2)
 
-	print("matrix1 + matrix2")
-	new_matrix2 = matrix1 + matrix2
+	print("matrix1 - matrix2")
+	new_matrix2 = matrix1 - matrix2
 	print(new_matrix2)
 
 	print("matrix1 * matrix2 = matrix3")

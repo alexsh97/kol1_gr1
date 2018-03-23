@@ -42,6 +42,18 @@ class Matrix:
 		else:
 			raise TypeError("Sizes of matrixs are not the same")
 
+	def sub(self,matrix2):
+		if self.rows == matrix2.rows and self.columns == matrix2.columns:
+			print("add matrix2")
+			new_matrix = []
+			for row in range(0,self.rows):
+				new_matrix.append([])
+				for column in range(0,self.columns):
+					new_matrix[row].append(self.matrix[row][column] - matrix2.matrix[row][column])	
+			return Matrix(*new_matrix)
+		else:
+			raise TypeError("Sizes of matrixs are not the same")
+
 
 	def __add__(self, rightObject):
 		if  isinstance(rightObject, (int,float)):
@@ -55,6 +67,46 @@ class Matrix:
 			return self.plus(rightObject)
 		else:
 			raise TypeError("Element '" + str(rightObject) + "' is not a number")
+
+	def __radd__(self, leftObject):
+		if  isinstance(leftObject, (int,float)):
+			new_matrix = []
+			for row in range(0,self.rows):
+				new_matrix.append([])
+				for column in range(0,self.columns):
+					new_matrix[row].append(self.matrix[row][column] + leftObject)
+			return Matrix(*new_matrix)
+		elif isinstance(leftObject,Matrix): 
+			return self.plus(leftObject)
+		else:
+			raise TypeError("Element '" + str(leftObject) + "' is not a number")
+
+	def __sub__(self, rightObject):
+		if  isinstance(rightObject, (int,float)):
+			new_matrix = []
+			for row in range(0,self.rows):
+				new_matrix.append([])
+				for column in range(0,self.columns):
+					new_matrix[row].append(self.matrix[row][column] - rightObject)
+			return Matrix(*new_matrix)
+		elif isinstance(rightObject,Matrix): 
+			return self.sub(rightObject)
+		else:
+			raise TypeError("Element '" + str(rightObject) + "' is not a number")
+
+	def __rsub__(self, leftObject):
+		if  isinstance(leftObject, (int,float)):
+			new_matrix = []
+			for row in range(0,self.rows):
+				new_matrix.append([])
+				for column in range(0,self.columns):
+					new_matrix[row].append(self.matrix[row][column] - leftObject)
+			return Matrix(*new_matrix)
+		elif isinstance(leftObject,Matrix): 
+			return self.sub(leftObject)
+		else:
+			raise TypeError("Element '" + str(leftObject) + "' is not a number")
+
 
 
 	def mul(self,matrix2):
@@ -84,6 +136,23 @@ class Matrix:
 				raise TypeError("Number of columns of left matrix equal to the number of rows of right matrix ")
 		else:
 			raise TypeError("Element '" + str(rightObject) + "' is not a number")
+
+	def __rmul__(self,leftObject):
+
+		if  isinstance(leftObject, (int,float)):
+			new_matrix = []
+			for row in range(0,self.rows):
+				new_matrix.append([])
+				for column in range(0,self.columns):
+					new_matrix[row].append(self.matrix[row][column] * leftObject)
+			return Matrix(*new_matrix)
+		elif isinstance(leftObject,Matrix): 
+			if self.columns == leftObject.rows:
+				return self.mul(leftObject)
+			else:
+				raise TypeError("Number of columns of left matrix equal to the number of rows of right matrix ")
+		else:
+			raise TypeError("Element '" + str(leftObject) + "' is not a number")
 				
 			
 			
